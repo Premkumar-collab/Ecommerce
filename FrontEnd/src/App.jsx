@@ -31,6 +31,8 @@ import UpdateRole from "./Admin/UpdateRole";
 import OrdersList from "./Admin/OrdersList";
 import UpdateOrder from "./Admin/UpdateOrder";
 import ReviewsList from "./Admin/ReviewsList";
+import AboutUs from "./components/AboutUs";
+import ContactUs from "./components/ContactUs";
 
 (axios.defaults.baseURL = "http://localhost:3000"),
   (axios.defaults.withCredentials = true);
@@ -50,6 +52,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

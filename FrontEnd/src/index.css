@@ -1,3 +1,4 @@
+@import "tailwindcss";
 :root { 
     
     --primary-main: #6C5B7B; 
@@ -16,9 +17,4 @@
 
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2); 
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15); 
-}
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
 }
