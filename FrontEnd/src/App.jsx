@@ -34,7 +34,7 @@ import ReviewsList from "./Admin/ReviewsList";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 
-(axios.defaults.baseURL = "http://localhost:3000"),
+(axios.defaults.baseURL = "https://bazario-6kz8.onrender.com/"),
   (axios.defaults.withCredentials = true);
 
 const App = () => {
@@ -133,23 +133,17 @@ const App = () => {
 
         <Route
           path="/admin/users"
-          element={
-            <ProtectedRoute element={<UsersList />} adminOnly={true} />
-          }
+          element={<ProtectedRoute element={<UsersList />} adminOnly={true} />}
         />
 
         <Route
           path="/admin/user/:id"
-          element={
-            <ProtectedRoute element={<UpdateRole />} adminOnly={true} />
-          }
+          element={<ProtectedRoute element={<UpdateRole />} adminOnly={true} />}
         />
 
         <Route
           path="/admin/orders"
-          element={
-            <ProtectedRoute element={<OrdersList />} adminOnly={true} />
-          }
+          element={<ProtectedRoute element={<OrdersList />} adminOnly={true} />}
         />
 
         <Route
@@ -165,8 +159,6 @@ const App = () => {
             <ProtectedRoute element={<ReviewsList />} adminOnly={true} />
           }
         />
-
-        
       </Routes>
       {isAuthenticated && <UserDashboard user={user} />}
     </>
