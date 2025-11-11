@@ -3,7 +3,7 @@ import "../UserStyles/Form.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { login, removeSuccess } from "../features/user/userSlice";
+import { login, removeError, removeSuccess } from "../features/user/userSlice";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 const Login = () => {
