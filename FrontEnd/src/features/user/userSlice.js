@@ -7,18 +7,16 @@ export const register = createAsyncThunk(
     try {
       const config = {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json", // Changed from multipart/form-data
         },
       };
-
       const { data } = await axios.post("/api/v1/register", userData, config);
       return data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || "An error occured");
+      return rejectWithValue(error.response?.data?.message || "An error occurred");
     }
   }
 );
-
 export const login = createAsyncThunk(
   "user/login",
   async ({ email, password }, { rejectWithValue }) => {

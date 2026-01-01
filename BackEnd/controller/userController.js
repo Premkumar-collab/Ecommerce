@@ -9,20 +9,34 @@ const cloudinary = require("cloudinary").v2;
 // Register user
 exports.registerUser = HandleAsyncError(async (req, res, next) => {
   const { name, email, password, role, avatar } = req.body;
-  const myCloud = await cloudinary.uploader.upload(avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
-  const user = await User.create({
-    name,
-    email,
-    password,
-    avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
-    role,
-  });
-  console.log(user);
-  sendToken(user, 201, res);
+
+  try {
+    const myCloud = await cloudinary.uploader
+      .upload(avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      })
+      .catch((err) => {
+        console.log("Cloudinary Error:", err); // This will show in Render logs
+        throw err;
+      });
+    if (!myCloud) {
+      return next("Image upload failed", 500);
+    }
+    const user = await User.create({
+      name,
+      email,
+      password,
+      avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
+      role,
+    });
+
+    sendToken(user, 201, res);
+  } catch (error) {
+    console.log("REGISTRATION ERROR:", error); // Check Render logs for this!
+    return next(error);
+  }
 });
 
 // Login user

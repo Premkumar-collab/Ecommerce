@@ -35,23 +35,24 @@ const Register = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+const registerSubmit = (e) => {
+  e.preventDefault();
+  
+  if (!name || !email || !password || !avatar) {
+    toast.error("Please fill all inputs including an avatar");
+    return;
+  }
 
-  const registerSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !email || !password) {
-      toast.error("Please fill all the required inputs", {
-        autoClose: 3000,
-        position: "bottom-right",
-      });
-      return;
-    }
-    const myForm = new FormData();
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("password", password);
-    myForm.set("avatar", avatar);
-    dispatch(register(myForm));
+  // Send a plain object, NOT FormData
+  const myData = {
+    name,
+    email,
+    password,
+    avatar, // This is already the Base64 string
   };
+
+  dispatch(register(myData));
+};
 
   // Showing error using toast
   useEffect(() => {
