@@ -21,7 +21,7 @@ exports.registerUser = HandleAsyncError(async (req, res, next) => {
     avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
     role,
   });
-
+  console.log(user);
   sendToken(user, 201, res);
 });
 
